@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Add Recipe</title>
+  <link rel="stylesheet" href="/output.css">
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black flex items-center justify-center">
+
+  <!-- Card -->
+  <div class="bg-white/95 backdrop-blur rounded-2xl shadow-2xl w-full max-w-md p-8">
+    <!-- Header -->
+    <div class="text-center mb-6">
+      <h2 class="text-2xl font-bold text-gray-900"><%= isEdit ? 'Edit Recipe' : 'Add New Recipe' %></h2>
+      <p class="text-sm text-gray-500 mt-1">
+        Share your delicious creation with the world!
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form action="<%= isEdit ? '/updateRecipe/' + recipe._id : '/createRecipe' %>" method="POST" class="space-y-4">
+
+      <!-- Title -->
+      <input type="text" name="title" placeholder="Recipe Title" value="<%= isEdit? recipe.title :'' %>"
+        class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+        required />
+
+      <!-- Ingredients -->
+         <textarea name="ingredients" rows="4" placeholder="Ingredients"
+        class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+        required><%= isEdit ? recipe.ingredients.join(', ') : '' %></textarea>
+
+      <!-- Instructions -->
+      <textarea name="instructions" rows="4" placeholder="Cooking Instructions"
+        class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+        required><%= isEdit ? recipe.instructions : '' %></textarea>
+
+      <!-- Cook Time -->
+      <input type="number" name="cookTime" placeholder="Cooking Time (minutes)"
+        class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+        value="<%= isEdit? recipe.cookTime :'' %>" required />
+
+      <!-- Image -->
+      <input type="text" name="image" placeholder="Image URL" value="<%= isEdit? recipe.image :'' %>"
+        class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500" />
+
+      <!-- Button -->
+
+      <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 rounded-lg">
+        <%= isEdit ? 'Update Recipe' : 'Create Recipe' %>
+      </button>
+
+      <div class="items-center flex">
+        <a href="/"
+          class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 text-center rounded-lg block">
+          Cancel
+        </a>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</body>
+
+</html>

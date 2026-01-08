@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/output.css">
+</head>
+
+<body class="bg-slate-900 text-white pt-16">
+
+  <%- include('partial/nav') %>
+
+  <main class="max-w-6xl mx-auto px-4">
+    <section class="max-w-4xl mx-auto px-4 mt-6">
+
+  <div class="bg-white text-gray-800 rounded-xl shadow-lg overflow-hidden">
+
+    <!-- Image -->
+    <img src="<%= recipe.image %>" class="w-full h-80 object-cover">
+
+    <div class="p-6 space-y-4">
+
+      <!-- Title + Actions -->
+      <div class="flex justify-between items-start">
+        <h1 class="text-3xl font-bold">
+          <%= recipe.title %>
+        </h1>
+
+        <div class="flex gap-4">
+          <a href="/updateRecipe/<%= recipe._id %>"
+             class="text-blue-600 hover:underline flex items-center gap-1">
+            <i class="fa-solid fa-pen-to-square"></i> Edit
+          </a>
+
+          <a href="/deleteRecipe/<%= recipe._id %>"
+             class="text-red-600 hover:underline flex items-center gap-1">
+            <i class="fa-solid fa-trash"></i> Delete
+          </a>
+        </div>
+      </div>
+
+      <!-- Cook Time -->
+      <p class="text-sm text-gray-500">
+        <i class="fa-regular fa-clock"></i>
+        <%= recipe.cookTime %> mins
+      </p>
+
+      <!-- Ingredients -->
+      <div>
+        <h2 class="text-lg font-semibold mb-1">Ingredients</h2>
+        <ul class="list-disc ml-5 text-gray-700">
+          <% recipe.ingredients.forEach(item => { %>
+            <li><%= item %></li>
+          <% }) %>
+        </ul>
+      </div>
+
+      <!-- Instructions -->
+      <div>
+        <h2 class="text-lg font-semibold mb-1">Instructions</h2>
+        <p class="text-gray-700 leading-relaxed">
+          <%= recipe.instructions %>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+    </main>
+
+</body>
+
+</html>
