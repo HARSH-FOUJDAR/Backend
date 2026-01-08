@@ -16,7 +16,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "pages"));
 
 // routes
-const recipeUiRouter =   require("./routes/recipeRoutes");
+const recipeUiRouter = require("./routes/recipeRoutes");
 app.use("/", recipeUiRouter);
 
 DatabseConnected();
