@@ -33,6 +33,7 @@ exports.getRecipeHome = async (req, res) => {
 exports.createRecipePage = (req, res) => {
   res.render("CreateRecipies", {
     isEdit: false,
+    recipe:{}
   });
 };
 
@@ -87,8 +88,7 @@ exports.deleteRecipe = async (req, res) => {
 exports.editRecipePage = async (req, res) => {
   try {
     const recipe = await Recipe.findById(req.params.id);
-    console.log(recipe);
-    res.render("CreateRecipies", { recipe, isEdit: true });
+    res.render("CreateRecipies", { recipe, isEdit: true, recipe });
   } catch (error) {
     res.redirect("/");
   }
